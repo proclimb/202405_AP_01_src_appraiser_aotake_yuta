@@ -241,10 +241,19 @@ function subStockEditView($param)
 		<input type="hidden" name="stockNo" value="<?php print $param["stockNo"] ?>" />
 
 		<table border="0" cellpadding="5" cellspacing="1">
-			<tr>
-				<input type="radio" name="del" value="1" checked /> 非除外
-				<input type="radio" name="del" value="0" /> 除外
-			</tr>
+			<td>
+				<?php
+				$check1 = '';
+				$check2 = '';
+				if ($param["del"] == '0') {
+					$check2 = 'checked = "checked"';
+				} else {
+					$check1 = 'checked = "checked"';
+				}
+				?>
+				<input type="radio" name="del" value="1" <?php print $check1; ?> /> 非除外
+				<input type="radio" name="del" value="0" <?php print $check2; ?> /> 除外
+			</td>
 			<tr>
 				<th>担当</th>
 				<td><input type="text" name="charge" value="<?php print $param["charge"] ?>" /></td>
