@@ -2,6 +2,9 @@
 //
 //物件管理リスト
 //
+var_dump($sql);
+var_dump($articleNo);
+
 function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo)
 {
 	switch ($flg) {
@@ -128,17 +131,19 @@ function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $a
 function fnSqlArticleInsert($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del)
 {
 	$sql  = "INSERT INTO TBLARTICLE (";
-	var_dump($sql);
-	$sql .= "ARTICLENO,ARTICLE,ROOM,KEYPLACE,ADDRESS,ARTICLENOTE,KEYBOX,DUEDT,SELLCHARGE,AREA,YEARS,SELLPRICE,INTERIORPRICE,CONSTTRADER,CONSTPRICE,CONSTADD,CONSTNOTE,PURCHASEDT,WORKSTARTDT,WORKENDDT,LINEOPENDT,LINECLOSEDT,RECEIVE,HOTWATER,SITEDT,LEAVINGFORM,LEAVINGDT,MANAGECOMPANY,FLOORPLAN,FORMEROWNER,BROKERCHARGE,BROKERCONTACT,INTERIORCHARGE,CONSTFLG1,CONSTFLG2,CONSTFLG3,CONSTFLG4,INSDT,UPDT,DEL,DRAWING,LINEOPENCONTACTDT,LINECLOSECONTACTDT,LINECONTACTNOTE,ELECTRICITYCHARGE,GASCHARGE,LIGHTORDER";
-	var_dump($sql);
+	$sql .= " ARTICLENO, ARTICLE, ROOM, KEYPLACE, ADDRESS, ARTICLENOTE, KEYBOX, DUEDT, SELLCHARGE, AREA, YEARS, SELLPRICE, INTERIORPRICE, CONSTTRADER,"
+		. " CONSTPRICE, CONSTADD, CONSTNOTE, PURCHASEDT, WORKSTARTDT, WORKENDDT, LINEOPENDT, LINECLOSEDT, RECEIVE, HOTWATER, SITEDT, LEAVINGFORM,"
+		. " LEAVINGDT, MANAGECOMPANY, FLOORPLAN, FORMEROWNER, BROKERCHARGE, BROKERCONTACT, INTERIORCHARGE, CONSTFLG1, CONSTFLG2, CONSTFLG3, CONSTFLG4, INSDT, UPDT, DEL,"
+		. " DRAWING, LINEOPENCONTACTDT, LINECLOSECONTACTDT, LINECONTACTNOTE, ELECTRICITYCHARGE, GASCHARGE, LIGHTORDER";
 	$sql .= " ) VALUES ( ";
-	var_dump($sql);
-	$sql .= "'$articleNo','$article','$room','$keyPlace','$address','$articleNote','$keyBox','','$sellCharge','','','','','','','','','','','','','','','','','','','','','','','','','','','','', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,'$del','$drawing','','','','','','' )";
-	var_dump($sql);
+	$sql .= "'$articleNo', '$article', '$room', '$keyPlace', '$address', '$articleNote', '$keyBox', '', '$sellCharge', '', '', '', '', '',"
+		. " '', '', '', '', '', '', '', '', '', '', '', '',"
+		. " '', '', '', '', '', '', '', '', '', '', '', 'CURRENT_TIMESTAMP', 'CURRENT_TIMESTAMP', '$del',"
+		. " '$drawing', '', '', '', '', '', '' )";
+
 	return ($sql);
-	//var_dump($sql);
 }
-//var_dump($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
+
 //
 //物件管理情報削除
 //
@@ -146,7 +151,7 @@ function fnSqlArticleDelete($articleNo)
 {
 	$sql  = "UPDATE TBLARTICLE";
 	//var_dump($sql);
-	$sql .= " SET DEL = 0";
+	$sql .= " SET DEL = -1";
 	//var_dump($sql);
 	$sql .= ",UPDT = CURRENT_TIMESTAMP";
 	//var_dump($sql);
