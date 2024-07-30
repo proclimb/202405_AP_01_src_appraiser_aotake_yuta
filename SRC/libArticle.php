@@ -141,17 +141,17 @@ function subArticle()
 					//var_dump($articleNo);
 					$article     = htmlspecialchars($row[1]);
 					//var_dump($article);
-					$room        = htmlspecialchars($row[3]);
+					$room        = htmlspecialchars($row[2]);
 					//var_dump($room);
-					$keyPlace    = htmlspecialchars($row[4]);
+					$keyPlace    = htmlspecialchars($row[3]);
 					//var_dump($keyPlace);
-					$articleNote = htmlspecialchars($row[5]);
+					$articleNote = htmlspecialchars($row[4]);
 					//var_dump($articleNote);
-					$keyBox      = htmlspecialchars($row[6]);
+					$keyBox      = htmlspecialchars($row[5]);
 					//var_dump($keyBox);
-					$drawing     = htmlspecialchars($row[7]);
+					$drawing     = htmlspecialchars($row[6]);
 					//var_dump($drawing);
-					$sellCharge  = htmlspecialchars($row[8]);
+					$sellCharge  = htmlspecialchars($row[7]);
 					//var_dump($sellCharge);
 				?>
 					<tr>
