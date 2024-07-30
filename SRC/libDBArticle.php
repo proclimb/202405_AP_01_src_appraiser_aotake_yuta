@@ -23,7 +23,7 @@ function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleN
 	$sql .= " WHERE DEL = $sDel";
 	//var_dump($sql);
 	if ($sArticle) {
-		$sql .= " AND ARTICLE LIKE '%$sArticle$%'";
+		$sql .= " AND ARTICLE LIKE '%$sArticle%'";
 		//var_dump($sql);
 	}
 	//var_dump($sArticle);
@@ -94,7 +94,7 @@ function fnSqlArticleEdit($articleNo)
 //
 //物件管理情報更新
 //
-function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del)
+function fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del, $articleNo)
 {
 	$sql  = "UPDATE TBLARTICLE";
 	//var_dump($sql);
@@ -104,7 +104,7 @@ function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $a
 	//var_dump($sql);
 	$sql .= ",KEYPLACE = '$keyPlace'";
 	//var_dump($sql);
-	$sql .= ",ADDRESS = '$address";
+	$sql .= ",ADDRESS = '$address'";
 	//var_dump($sql);
 	$sql .= ",ARTICLENOTE = '$articleNote'";
 	//var_dump($sql);
@@ -114,9 +114,11 @@ function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $a
 	//var_dump($sql);
 	$sql .= ",SELLCHARGE = '$sellCharge'";
 	//var_dump($sql);
+	$sql .= ",UPDT = CURRENT_TIMESTAMP";
+	//var_dump($sql);
 	$sql .= ",DEL = '$del'";
 	//var_dump($sql);
-	$sql .= " WHERE ARTICLENO = $articleNo";
+	$sql .= " WHERE ARTICLENO = '$articleNo'";
 	//var_dump($sql);
 
 	return ($sql);

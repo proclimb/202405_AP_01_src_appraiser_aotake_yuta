@@ -104,12 +104,15 @@ function fnSqlTradeInsert($tradeNo, $name, $nameFuri, $branch, $branchFuri, $zip
 {
 	$sql  = "INSERT INTO TBLTRADE(";
 	$sql .= "TRADENO,NAME,NAMEFURI,BRANCH,BRANCHFURI,ZIP,PREFECTURE,ADDRESS1,ADDRESS2,TEL,FAX,MOBILE,INTERIOR,INSDT,UPDT,DEL";
+	//var_dump($sql);
 	$sql .= ")VALUES(";
+	//var_dump($sql);
 	$sql .= "'$tradeNo','$name','$nameFuri','$branch','$branchFuri','$zip','$prefecture','$address1','$address2','$tel','$fax','$mobile','$interior',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'$del')";
-
+	//var_dump($sql);
 	return ($sql);
+	//var_dump($sql);
 }
-
+//var_dump($tradeNo, $name, $nameFuri, $branch, $branchFuri, $zip, $prefecture, $address1, $address2, $tel, $fax, $mobile, $interior, $del);
 
 
 

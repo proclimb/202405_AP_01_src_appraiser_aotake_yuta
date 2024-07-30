@@ -279,12 +279,10 @@ function subArticleEdit()
 		<table border="0" cellpadding="5" cellspacing="1">
 			<tr>
 				<th>除外</th>
-				<?php if ($articleNo) { ?>
-					<td>
-						<input type="radio" name="del" value="1" checked="checked" /> 非除外
-						<input type="radio" name="del" value="0" <?php if ($del == '0') print ' checked="checked"'; ?> /> 除外
-					</td>
-				<?php } ?>
+				<td>
+					<input type="radio" name="del" value="1" checked="checked" /> 非除外
+					<input type="radio" name="del" value="0" <?php if ($del == '0') print ' checked="checked"'; ?> /> 除外
+				</td>
 			</tr>
 			<tr>
 				<th>物件名<span class="red">（必須）</span></th>
@@ -394,7 +392,7 @@ function subArticleEditComplete()
 
 	if ($articleNo) {
 		// 編集
-		$sql = fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
+		$sql = fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del, $articleNo);
 		//var_dump($sql);
 		$res = mysqli_query($conn, $sql);
 		//var_dump($res);
@@ -404,8 +402,8 @@ function subArticleEditComplete()
 		//var_dump($sql);
 		$res = mysqli_query($conn, $sql);
 		//var_dump($res);
-		/* $sql = fnSqlFManagerInsert(fnNextNo('FM'),$article,$room,$articleNote,$del);
-			$res = mysqli_query($conn,$sql); */
+		$sql = fnSqlFManagerInsert(fnNextNo('FM'), $article, $room, $articleNote, $del);
+		$res = mysqli_query($conn, $sql);
 	}
 	//var_dump($articleNo);
 	$_REQUEST['act'] = 'articleSearch';
