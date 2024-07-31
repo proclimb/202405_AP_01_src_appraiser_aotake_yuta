@@ -143,7 +143,7 @@ function subSellView($param)
 					$floor    = htmlspecialchars($row[7]);
 					$area     = htmlspecialchars($row[8]);
 					$seller   = htmlspecialchars($row[9]);
-					$price    = htmlspecialchars(fnNumFormat($row[10]));
+					$price    = htmlspecialchars($row[10]);
 					$note     = htmlspecialchars($row[11]);
 				?>
 					<tr>
