@@ -13,8 +13,8 @@ function fnSqlSellList($flg, $param)
             break;
         case 1:
             $select = "SELECT SELLNO,IF(SEARCHDT > '0000-00-00',DATE_FORMAT(SEARCHDT,'%Y/%m/%d'),''),ARTICLE,"
-                . "ADDRESS,STATION,IF(FOOT > 0,FOOT,''),IF(YEARS > 0,YEARS,''),IF(FLOOR > 0,FLOOR,''),"
-                . "IF(AREA > 0,AREA,''),SELLER,IF(PRICE > 0,PRICE,''),NOTE";
+                . "ADDRESS,STATION,FOOT,YEARS,FLOOR,"
+                . "AREA,SELLER,PRICE,NOTE";
             // 並び替えとデータ抽出数
             if ($param["orderBy"]) {
                 $order = " ORDER BY " . $param["orderBy"] . " " . $param["orderTo"];
