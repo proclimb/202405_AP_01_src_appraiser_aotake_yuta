@@ -84,7 +84,7 @@ function fnSqlSellList($flg, $param)
 //
 function fnSqlSellEdit($sellNo)
 {
-    $select  = "SELECT SEARCHDT,ARTICLE,ADDRESS,STATION,FOOT,";
+    $select  = "SELECT IF(SEARCHDT > '0000-00-00',DATE_FORMAT(SEARCHDT,'%Y/%m/%d'),''),ARTICLE,ADDRESS,STATION,FOOT,";
     $select .= "YEARS,FLOOR,AREA,SELLER,PRICE,NOTE";
     $from = " FROM TBLSELL";
     $where = " WHERE DEL = 1";
