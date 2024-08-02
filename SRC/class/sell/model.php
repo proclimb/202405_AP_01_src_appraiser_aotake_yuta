@@ -25,6 +25,8 @@ function fnSqlSellList($flg, $param)
     $from = " FROM TBLSELL";
     $where = " WHERE DEL = 1";
 
+
+
     // 検索条件
     if ($param["sSearchFrom"]) {
         $where .= " AND SEARCHDT >= '" . $param["sSearchFrom"] . "'";
@@ -82,6 +84,7 @@ function fnSqlSellList($flg, $param)
 //
 // 売主物件情報
 //
+
 function fnSqlSellEdit($sellNo)
 {
     $select  = "SELECT IF(SEARCHDT > '0000-00-00',DATE_FORMAT(SEARCHDT,'%Y/%m/%d'),''),ARTICLE,ADDRESS,STATION,FOOT,";
@@ -119,6 +122,7 @@ function fnSqlSellUpdate($param)
 //
 // 売主物件情報登録
 //
+
 function fnSqlSellInsert($param)
 {
     $sql = "INSERT INTO TBLSELL(";

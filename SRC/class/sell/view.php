@@ -41,17 +41,23 @@ function subSellView($param)
 
 				<tr>
 					<th>物件名</th>
-					<td colspan="6"><input type="text" name="sArticle" value="<?php print $param["sArticle"] ?>" size="100" /></td>
+					<td colspan="6">
+						<input type="text" name="sArticle" value="<?php print $param["sArticle"] ?>" size="100" />
+					</td>
 				</tr>
 
 				<tr>
 					<th>住所</th>
-					<td colspan="6"><input type="text" name="sAddress" value="<?php print $param["sAddress"] ?>" size="100" /></td>
+					<td colspan="6">
+						<input type="text" name="sAddress" value="<?php print $param["sAddress"] ?>" size="100" />
+					</td>
 				</tr>
 
 				<tr>
 					<th>駅</th>
-					<td><input type="text" name="sStation" value="<?php print $param["sStation"] ?>" size="30" /></td>
+					<td>
+						<input type="text" name="sStation" value="<?php print $param["sStation"] ?>" size="30" />
+					</td>
 					<th>徒歩</th>
 					<td>
 						<select name="sFoot">
@@ -79,11 +85,13 @@ function subSellView($param)
 				</tr>
 				<tr>
 					<th>築年</th>
-					<td><input type="text" name="sYearsFrom" value="<?php print $param["sYearsFrom"] ?>" size="10" /> 年～
+					<td>
+						<input type="text" name="sYearsFrom" value="<?php print $param["sYearsFrom"] ?>" size="10" /> 年～
 						<input type="text" name="sYearsTo" value="<?php print $param["sYearsTo"] ?>" size="10" /> 年
 					</td>
 					<th>価格</th>
-					<td><input type="text" name="sPriceFrom" value="<?php print $param["sPriceFrom"] ?>" size="10" /> 万～
+					<td>
+						<input type="text" name="sPriceFrom" value="<?php print $param["sPriceFrom"] ?>" size="10" /> 万～
 						<input type="text" name="sPriceTo" value="<?php print $param["sPriceTo"] ?>" size="10" /> 万
 					</td>
 				</tr>
@@ -105,6 +113,7 @@ function subSellView($param)
 
 		$sql = fnSqlSellList(0, $param);
 		$res = mysqli_query($param["conn"], $sql);
+		echo $sql;
 		$row = mysqli_fetch_array($res);
 
 		$count = $row[0];

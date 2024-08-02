@@ -3,6 +3,7 @@
 //
 // 売主物件画面
 //
+
 function subSell()
 {
     $param = getSellParam();
