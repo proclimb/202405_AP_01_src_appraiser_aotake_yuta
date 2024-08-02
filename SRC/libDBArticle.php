@@ -2,8 +2,6 @@
 //
 //物件管理リスト
 //
-var_dump($sql);
-var_dump($articleNo);
 
 function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo)
 {
