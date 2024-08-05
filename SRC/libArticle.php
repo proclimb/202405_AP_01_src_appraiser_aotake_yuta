@@ -90,7 +90,6 @@ function subArticle()
 		$sql = fnSqlArticleList(0, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($res);
-
 		$count = $row[0];
 
 		$sPage = fnPage($count, $sPage, 'articleSearch');
@@ -109,7 +108,8 @@ function subArticle()
 					<th class="list_head">営業担当者<?php fnOrder('SELLCHARGE', 'articleSearch'); ?></th>
 				</tr>
 				<?php
-				$sql = fnSqlArticleList(1, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
+				$sql = fnSqlArticleList("1", $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
+				var_dump($sql);
 				$i = 0;
 				while ($row = mysqli_fetch_array($res)) {
 					$articleNo   = htmlspecialchars($row[0]);
@@ -271,9 +271,9 @@ function subArticleEdit()
 //
 //物件管理編集完了処理
 //
+
 function subArticleEditComplete()
 {
-	echo "bugchech";
 	$conn = fnDbConnect();
 
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
@@ -303,7 +303,7 @@ function subArticleEditComplete()
 
 	if ($articleNo) {
 		// 編集
-		$sql = fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del, $articleNo);
+		$sql = fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
 		$res = mysqli_query($conn, $sql);
 	} else {
 		// 新規登録
@@ -313,6 +313,7 @@ function subArticleEditComplete()
 		$res = mysqli_query($conn, $sql);
 	}
 	$_REQUEST['act'] = 'articleSearch';
+	var_dump($_REQUEST);
 	subArticle();
 }
 

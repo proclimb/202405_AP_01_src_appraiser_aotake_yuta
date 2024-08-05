@@ -8,67 +8,46 @@ function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleN
 	switch ($flg) {
 		case 0:
 			$sql  = "SELECT COUNT(*)";
-			//var_dump($sql);
+			echo "libDB line11";
 			break;
 		case 1:
 			$sql  = "SELECT ARTICLENO, ARTICLE, ROOM, KEYPLACE, ARTICLENOTE, KEYBOX, DRAWING, SELLCHARGE";
-			//var_dump($sql);
+			echo "libDB line15";
 			break;
 	}
-	//var_dump($flg);
 	$sql .= " FROM TBLARTICLE";
-	//var_dump($sql);
 	$sql .= " WHERE DEL = $sDel";
-	//var_dump($sql);
 	if ($sArticle) {
 		$sql .= " AND ARTICLE LIKE '%$sArticle%'";
-		//var_dump($sql);
+		echo "libDB line22";
 	}
-	//var_dump($sArticle);
 	if ($sRoom) {
 		$sql .= " AND ROOM LIKE '%$sRoom%'";
-		//var_dump($sql);
+		echo "libDB line26";
 	}
-	//var_dump($sRoom);
 	if ($sKeyPlace) {
 		$sql .= " AND KEYPLACE LIKE '%$sKeyPlace%'";
-		//var_dump($sql);
 	}
-	//var_dump($sKeyPlace);
 	if ($sArticleNote) {
 		$sql .= " AND ARTICLENOTE LIKE '%$sArticleNote%'";
-		//var_dump($sql);
 	}
-	//var_dump($sKeyPlace);
 	if ($sKeyBox) {
 		$sql .= " AND KEYBOX LIKE '%l$sKeyBox%'";
-		//var_dump($sql);
 	}
-	//var_dump($sKeyBox);
 	if ($sDrawing) {
 		$sql .= " AND DRAWING LIKE '%$sDrawing%'";
-		//var_dump($sql);
 	}
-	//var_dump($sDrawing);
 	if ($sSellCharge) {
 		$sql .= " AND SELLCHARGE LIKE '%$sSellCharge%'";
-		//var_dump($sql);
 	}
-	//var_dump($sDrawing);
 	if ($orderBy) {
 		$sql .= " ORDER BY $orderBy $orderTo";
-		//var_dump($sql);
 	}
-	//var_dump($orderBy);
 	if ($flg) {
 		$sql .= " LIMIT " . (($sPage - 1) * PAGE_MAX) . ", " . PAGE_MAX;
-		//var_dump($sql);
 	}
-	//var_dump($flg);
 	return ($sql);
-	//var_dump($sql);
 }
-//var_dump($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
 
 
 //
@@ -77,16 +56,11 @@ function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleN
 function fnSqlArticleEdit($articleNo)
 {
 	$sql  = "SELECT ARTICLE,ROOM,KEYPLACE,ADDRESS,ARTICLENOTE,KEYBOX,DRAWING,SELLCHARGE,DEL";
-	//var_dump($sql);
 	$sql .= " FROM TBLARTICLE";
-	//var_dump($sql);
 	$sql .= " WHERE ARTICLENO = $articleNo";
-	//var_dump($sql);
 
 	return ($sql);
-	//var_dump($sql);
 }
-//var_dump($articleNo);
 
 
 //
@@ -95,35 +69,20 @@ function fnSqlArticleEdit($articleNo)
 function fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del, $articleNo)
 {
 	$sql  = "UPDATE TBLARTICLE";
-	//var_dump($sql);
 	$sql .= " SET ARTICLE = '$article'";
-	//var_dump($sql);
 	$sql .= ",ROOM = '$room'";
-	//var_dump($sql);
 	$sql .= ",KEYPLACE = '$keyPlace'";
-	//var_dump($sql);
 	$sql .= ",ADDRESS = '$address'";
-	//var_dump($sql);
 	$sql .= ",ARTICLENOTE = '$articleNote'";
-	//var_dump($sql);
 	$sql .= ",KEYBOX = '$keyBox'";
-	//var_dump($sql);
 	$sql .= ",DRAWING = '$drawing'";
-	//var_dump($sql);
 	$sql .= ",SELLCHARGE = '$sellCharge'";
-	//var_dump($sql);
 	$sql .= ",UPDT = CURRENT_TIMESTAMP";
-	//var_dump($sql);
 	$sql .= ",DEL = '$del'";
-	//var_dump($sql);
 	$sql .= " WHERE ARTICLENO = '$articleNo'";
-	//var_dump($sql);
 
 	return ($sql);
-	//var_dump($sql);
 }
-//var_dump($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
-
 
 //
 //物件管理情報登録
@@ -150,15 +109,9 @@ function fnSqlArticleInsert($articleNo, $article, $room, $keyPlace, $address, $a
 function fnSqlArticleDelete($articleNo)
 {
 	$sql  = "UPDATE TBLARTICLE";
-	//var_dump($sql);
 	$sql .= " SET DEL = -1";
-	//var_dump($sql);
 	$sql .= ",UPDT = CURRENT_TIMESTAMP";
-	//var_dump($sql);
 	$sql .= " WHERE ARTICLENO = '$articleNo'";
-	//var_dump($sql);
 
 	return ($sql);
-	//var_dump($sql);
 }
-//var_dump($articleNo);

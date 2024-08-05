@@ -66,6 +66,7 @@ if ($_COOKIE['cUserNo'] != '' && $_COOKIE['authority'] != '') {
     setcookie('authority', $_COOKIE['authority'], time() - 1);
     $_REQUEST['act'] = '';
 }
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -81,7 +82,6 @@ if ($_COOKIE['cUserNo'] != '' && $_COOKIE['authority'] != '') {
 
     <?php
     switch ($_REQUEST['act']) {
-
             // ログイン
         case '':
         case 'reLogin':
@@ -136,12 +136,10 @@ if ($_COOKIE['cUserNo'] != '' && $_COOKIE['authority'] != '') {
             break;
 
         case 'articleEdit':
-            echo "bugcheck index line138";
             subArticleEdit();
             break;
 
         case 'articleEditComplete':
-            echo "bugcheck index line143";
             subArticleEditComplete();
             break;
 
