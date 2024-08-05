@@ -5,47 +5,32 @@
 function subArticle()
 {
 	$conn = fnDbConnect();
-	//var_dump($conn);
+
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
-	//var_dump($sDel);
 	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
-	//var_dump($sArticle);
 	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
-	//var_dump($sRoom);
 	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
-	//var_dump($sKeyPlace);
 	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
-	//var_dump($sArticleNote);
 	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
-	//var_dump($sKeyBox);
 	$sDrawing     = htmlspecialchars($_REQUEST['sDrawing']);
-	//var_dump($sDrawing);
 	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
-	//var_dump($sSellCharge);
 
 	$orderBy = $_REQUEST['orderBy'];
-	//var_dump($orderBy);
 	$orderTo = $_REQUEST['orderTo'];
-	//var_dump($orderTo);
 	$sPage   = $_REQUEST['sPage'];
-	//var_dump($sPage);
 
 	if ($sDel == '') {
 		$sDel = 1;
-		//var_dump($sDel);
 	}
 
 	if (!$sPage) {
 		$sPage = 1;
-		//var_dump($sPage);
 	}
 
 
 	if (!$orderBy) {
 		$orderBy = 'ARTICLENO';
-		//var_dump($orderBy);
 		$orderTo = 'DESC';
-		//var_dump($orderTo);
 	}
 
 
@@ -102,19 +87,13 @@ function subArticle()
 		if ($_REQUEST['act'] == 'article') {
 			return;
 		}
-		//var_dump($_REQUEST);
 		$sql = fnSqlArticleList(0, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
-		//var_dump($sql);
 		$res = mysqli_query($conn, $sql);
-		//var_dump($res);
 		$row = mysqli_fetch_array($res);
-		//var_dump($row);
 
 		$count = $row[0];
-		//var_dump($count);
 
 		$sPage = fnPage($count, $sPage, 'articleSearch');
-		//var_dump($sPage);
 		?>
 
 		<div class="list">
@@ -131,28 +110,16 @@ function subArticle()
 				</tr>
 				<?php
 				$sql = fnSqlArticleList(1, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
-				//var_dump($sql);
-				$res = mysqli_query($conn, $sql);
-				//var_dump($res);
 				$i = 0;
-				//var_dump($i);
 				while ($row = mysqli_fetch_array($res)) {
 					$articleNo   = htmlspecialchars($row[0]);
-					//var_dump($articleNo);
 					$article     = htmlspecialchars($row[1]);
-					//var_dump($article);
 					$room        = htmlspecialchars($row[2]);
-					//var_dump($room);
 					$keyPlace    = htmlspecialchars($row[3]);
-					//var_dump($keyPlace);
 					$articleNote = htmlspecialchars($row[4]);
-					//var_dump($articleNote);
 					$keyBox      = htmlspecialchars($row[5]);
-					//var_dump($keyBox);
 					$drawing     = htmlspecialchars($row[6]);
-					//var_dump($drawing);
 					$sellCharge  = htmlspecialchars($row[7]);
-					//var_dump($sellCharge);
 				?>
 					<tr>
 						<td class="list_td<?php print $i; ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $articleNo ?>';form.submit();"><?php print $article ?></a></td>
@@ -166,9 +133,7 @@ function subArticle()
 					</tr>
 				<?php
 					$i = ($i + 1) % 2;
-					//var_dump($i);
 				}
-				//var_dump($row);
 				?>
 			</table>
 		</div>
@@ -185,75 +150,44 @@ function subArticle()
 function subArticleEdit()
 {
 	$conn = fnDbConnect();
-	//var_dump($conn);
 
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
-	//var_dump($sDel);
 	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
-	//var_dump($sArticle);
 	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
-	//var_dump($sRoom);
 	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
-	//var_dump($sKeyPlace);
 	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
-	//var_dump($sArticleNote);
 	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
-	//var_dump($sKeyBox);
 	$sDueDTFrom   = htmlspecialchars($_REQUEST['sDueDTFrom']);
-	//var_dump($sDueDTFrom);
 	$sDueDTTo     = htmlspecialchars($_REQUEST['sDueDTTo']);
-	//var_dump($sDueDTTo);
 	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
-	//var_dump($sSellCharge);
 
 	$orderBy = $_REQUEST['orderBy'];
-	//var_dump($orderBy);
 	$orderTo = $_REQUEST['orderTo'];
-	//var_dump($orderTo);
 	$sPage   = $_REQUEST['sPage'];
-	//var_dump($sPage);
 
 	$articleNo = $_REQUEST['articleNo'];
-	//var_dump($articleNo);
 
 	if ($articleNo) {
 		$sql = fnSqlArticleEdit($articleNo);
-		//var_dump($sql);
 		$res = mysqli_query($conn, $sql);
-		//var_dump($res);
 		$row = mysqli_fetch_array($res);
-		//var_dump($row);
 
 		$article     =  htmlspecialchars($row[0]);
-		//var_dump($article);
 		$room        =  htmlspecialchars($row[1]);
-		//var_dump($room);
 		$keyPlace    =  htmlspecialchars($row[2]);
-		//var_dump($keyPlace);
 		$address     =  htmlspecialchars($row[3]);
-		//var_dump($address);
 		$articleNote =  htmlspecialchars($row[4]);
-		//var_dump($articleNote);
 		$keyBox      =  htmlspecialchars($row[5]);
-		//var_dump($keyBox);
 		$drawing     =  htmlspecialchars($row[6]);
-		//var_dump($drawing);
 		$sellCharge  =  htmlspecialchars($row[7]);
-		//var_dump($sellCharge);
 		$del         =  htmlspecialchars($row[8]);
-		//var_dump($del);
 
 		$purpose  = '更新';
-		//var_dump($purpose);
 		$btnImage = 'btn_load.png';
-		//var_dump($btnImage);
 	} else {
 		$purpose = '登録';
-		//var_dump($purpose);
 		$btnImage = 'btn_enter.png';
-		//var_dump($btnImage);
 	}
-	//var_dump($articleNo);
 	subMenu();
 ?>
 	<script type="text/javascript" src="./js/article.js"></script>
@@ -325,7 +259,6 @@ function subArticleEdit()
 			<a href="javascript:fnArticleDeleteCheck(<?php print $articleNo; ?>);"><img src="./images/btn_del.png" /></a>
 		<?php
 		}
-		//var_dump($articleNo);
 		?>
 
 	</form>
@@ -340,74 +273,46 @@ function subArticleEdit()
 //
 function subArticleEditComplete()
 {
+	echo "bugchech";
 	$conn = fnDbConnect();
-	//var_dump($conn);
 
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
-	//var_dump($sDel);
 	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
-	//var_dump($sArticle);
 	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
-	//var_dump($sRoom);
 	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
-	//var_dump($sKeyPlace);
 	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
-	//var_dump($sArticleNote);
 	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
-	//var_dump($sKeyBox);
 	$sDueDTFrom   = htmlspecialchars($_REQUEST['sDueDTFrom']);
-	//var_dump($sDueDTFrom);
 	$sDueDTTo     = htmlspecialchars($_REQUEST['sDueDTTo']);
-	//var_dump($sDueDTTo);
 	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
-	//var_dump($sSellCharge);
 
 	$orderBy = $_REQUEST['orderBy'];
-	//var_dump($orderBy);
 	$orderTo = $_REQUEST['orderTo'];
-	//var_dump($orderTo);
 	$sPage   = $_REQUEST['sPage'];
-	//var_dump($sPage);
 
 	$articleNo   = mysqli_real_escape_string($conn, $_REQUEST['articleNo']);
-	//var_dump($articleNo);
 	$article     = mysqli_real_escape_string($conn, $_REQUEST['article']);
-	//var_dump($article);
 	$room        = mysqli_real_escape_string($conn, $_REQUEST['room']);
-	//var_dump($room);
 	$keyPlace    = mysqli_real_escape_string($conn, $_REQUEST['keyPlace']);
-	//var_dump($keyPlace);
 	$address     = mysqli_real_escape_string($conn, $_REQUEST['address']);
-	//var_dump($address);
 	$articleNote = mysqli_real_escape_string($conn, $_REQUEST['articleNote']);
-	//var_dump($articleNote);
 	$keyBox      = mysqli_real_escape_string($conn, $_REQUEST['keyBox']);
-	//var_dump($keyBox);
 	$drawing     = mysqli_real_escape_string($conn, $_REQUEST['drawing']);
-	//var_dump($drawing);
 	$sellCharge  = mysqli_real_escape_string($conn, $_REQUEST['sellCharge']);
-	//var_dump($sellCharge);
 	$del         = mysqli_real_escape_string($conn, $_REQUEST['del']);
-	//var_dump($del);
 
 	if ($articleNo) {
 		// 編集
 		$sql = fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del, $articleNo);
-		//var_dump($sql);
 		$res = mysqli_query($conn, $sql);
-		//var_dump($res);
 	} else {
 		// 新規登録
 		$sql = fnSqlArticleInsert(fnNextNo('ARTICLE'), $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
-		//var_dump($sql);
 		$res = mysqli_query($conn, $sql);
-		//var_dump($res);
 		$sql = fnSqlFManagerInsert(fnNextNo('FM'), $article, $room, $articleNote, $del);
 		$res = mysqli_query($conn, $sql);
 	}
-	//var_dump($articleNo);
 	$_REQUEST['act'] = 'articleSearch';
-	//var_dump($_REQUEST);
 	subArticle();
 }
 
@@ -418,18 +323,13 @@ function subArticleEditComplete()
 function subArticleDelete()
 {
 	$conn = fnDbConnect();
-	//var_dump($conn);
 
 	$articleNo = $_REQUEST['articleNo'];
-	//var_dump($articleNo);
 
 	$sql = fnSqlArticleDelete($articleNo);
-	//var_dump($sql);
 	$res = mysqli_query($conn, $sql);
-	//var_dump($res);
 
 	$_REQUEST['act'] = 'articleSearch';
-	//var_dump($_REQUEST);
 	subArticle();
 }
 ?>

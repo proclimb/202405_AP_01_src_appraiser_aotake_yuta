@@ -136,10 +136,12 @@ if ($_COOKIE['cUserNo'] != '' && $_COOKIE['authority'] != '') {
             break;
 
         case 'articleEdit':
+            echo "bugcheck index line138";
             subArticleEdit();
             break;
 
         case 'articleEditComplete':
+            echo "bugcheck index line143";
             subArticleEditComplete();
             break;
 
