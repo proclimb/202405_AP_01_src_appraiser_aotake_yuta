@@ -2,10 +2,11 @@
 //
 //物件管理画面
 //
+echo "libarticle line5";
 function subArticle()
 {
 	$conn = fnDbConnect();
-
+	echo "libarticle line9";
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
 	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
 	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
@@ -32,8 +33,7 @@ function subArticle()
 		$orderBy = 'ARTICLENO';
 		$orderTo = 'DESC';
 	}
-
-
+	echo "libarticle line36";
 	subMenu();
 ?>
 
@@ -84,17 +84,17 @@ function subArticle()
 		<hr />
 
 		<?php
+		echo "libarticle line87";
 		if ($_REQUEST['act'] == 'article') {
 			return;
 		}
+
 		$sql = fnSqlArticleList(0, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($res);
 		$count = $row[0];
-
 		$sPage = fnPage($count, $sPage, 'articleSearch');
 		?>
-
 		<div class="list">
 			<table border="0" cellpadding="5" cellspacing="1">
 				<tr>
@@ -108,10 +108,12 @@ function subArticle()
 					<th class="list_head">営業担当者<?php fnOrder('SELLCHARGE', 'articleSearch'); ?></th>
 				</tr>
 				<?php
-				$sql = fnSqlArticleList("1", $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
-				var_dump($sql);
+				echo "libarticle line111";
+				$sql = fnSqlArticleList(1, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
+				$res = mysqli_query($conn, $sql);
 				$i = 0;
 				while ($row = mysqli_fetch_array($res)) {
+					echo "libarticle check line115";
 					$articleNo   = htmlspecialchars($row[0]);
 					$article     = htmlspecialchars($row[1]);
 					$room        = htmlspecialchars($row[2]);
@@ -120,6 +122,7 @@ function subArticle()
 					$keyBox      = htmlspecialchars($row[5]);
 					$drawing     = htmlspecialchars($row[6]);
 					$sellCharge  = htmlspecialchars($row[7]);
+					echo "libarticle check line124";
 				?>
 					<tr>
 						<td class="list_td<?php print $i; ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $articleNo ?>';form.submit();"><?php print $article ?></a></td>
@@ -141,16 +144,13 @@ function subArticle()
 <?php
 }
 
-
-
-
 //
 //物件管理編集画面
 //
 function subArticleEdit()
 {
 	$conn = fnDbConnect();
-
+	echo "libarticle line152";
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
 	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
 	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
@@ -171,7 +171,7 @@ function subArticleEdit()
 		$sql = fnSqlArticleEdit($articleNo);
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($res);
-
+		echo "libarticle line173";
 		$article     =  htmlspecialchars($row[0]);
 		$room        =  htmlspecialchars($row[1]);
 		$keyPlace    =  htmlspecialchars($row[2]);
@@ -188,6 +188,7 @@ function subArticleEdit()
 		$purpose = '登録';
 		$btnImage = 'btn_enter.png';
 	}
+	echo "libarticle line190";
 	subMenu();
 ?>
 	<script type="text/javascript" src="./js/article.js"></script>
@@ -251,7 +252,7 @@ function subArticleEdit()
 				<td><input type="text" name="sellCharge" value="<?php print $sellCharge; ?>" /></td>
 			</tr>
 		</table>
-
+		echo "libarticle line254";
 		<a href="javascript:fnArticleEditCheck();"><img src="./images/<?php print $btnImage; ?>" /></a>　
 		<a href="javascript:form.act.value='articleSearch';form.submit();"><img src="./images/btn_return.png" /></a>　
 		<?php if ($articleNo) {
@@ -271,9 +272,10 @@ function subArticleEdit()
 //
 //物件管理編集完了処理
 //
-
+echo "libarticle line274";
 function subArticleEditComplete()
 {
+	echo "libarticle line277";
 	$conn = fnDbConnect();
 
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
@@ -313,10 +315,10 @@ function subArticleEditComplete()
 		$res = mysqli_query($conn, $sql);
 	}
 	$_REQUEST['act'] = 'articleSearch';
-	var_dump($_REQUEST);
 	subArticle();
+	echo "libarticle line318";
 }
-
+echo "libarticle line320";
 
 //
 //物件管理削除処理
@@ -333,4 +335,5 @@ function subArticleDelete()
 	$_REQUEST['act'] = 'articleSearch';
 	subArticle();
 }
+echo "libarticle line337";
 ?>
