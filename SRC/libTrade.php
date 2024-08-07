@@ -106,7 +106,6 @@ function subTrade()
 		$sql = fnSqlTradeList(0, $sDel, $sName, $sBranch, $sZip, $sPrefecture, $sAddress1, $sAddress2, $sTel, $sFax, $sMobile, $sPage, $orderBy, $orderTo);
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($res);
-
 		$count = $row[0];
 
 		$sPage = fnPage($count, $sPage, 'tradeSearch');

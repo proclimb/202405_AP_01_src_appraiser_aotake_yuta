@@ -2,11 +2,10 @@
 //
 //物件管理画面
 //
-echo "libarticle line5";
 function subArticle()
 {
 	$conn = fnDbConnect();
-	echo "libarticle line9";
+
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
 	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
 	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
@@ -33,7 +32,7 @@ function subArticle()
 		$orderBy = 'ARTICLENO';
 		$orderTo = 'DESC';
 	}
-	echo "libarticle line36";
+
 	subMenu();
 ?>
 
@@ -84,7 +83,6 @@ function subArticle()
 		<hr />
 
 		<?php
-		echo "libarticle line87";
 		if ($_REQUEST['act'] == 'article') {
 			return;
 		}
@@ -108,12 +106,10 @@ function subArticle()
 					<th class="list_head">営業担当者<?php fnOrder('SELLCHARGE', 'articleSearch'); ?></th>
 				</tr>
 				<?php
-				echo "libarticle line111";
 				$sql = fnSqlArticleList(1, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
 				$res = mysqli_query($conn, $sql);
 				$i = 0;
 				while ($row = mysqli_fetch_array($res)) {
-					echo "libarticle check line115";
 					$articleNo   = htmlspecialchars($row[0]);
 					$article     = htmlspecialchars($row[1]);
 					$room        = htmlspecialchars($row[2]);
@@ -122,7 +118,6 @@ function subArticle()
 					$keyBox      = htmlspecialchars($row[5]);
 					$drawing     = htmlspecialchars($row[6]);
 					$sellCharge  = htmlspecialchars($row[7]);
-					echo "libarticle check line124";
 				?>
 					<tr>
 						<td class="list_td<?php print $i; ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $articleNo ?>';form.submit();"><?php print $article ?></a></td>
@@ -150,7 +145,7 @@ function subArticle()
 function subArticleEdit()
 {
 	$conn = fnDbConnect();
-	echo "libarticle line152";
+
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
 	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
 	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
@@ -171,7 +166,7 @@ function subArticleEdit()
 		$sql = fnSqlArticleEdit($articleNo);
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($res);
-		echo "libarticle line173";
+
 		$article     =  htmlspecialchars($row[0]);
 		$room        =  htmlspecialchars($row[1]);
 		$keyPlace    =  htmlspecialchars($row[2]);
@@ -188,7 +183,6 @@ function subArticleEdit()
 		$purpose = '登録';
 		$btnImage = 'btn_enter.png';
 	}
-	echo "libarticle line190";
 	subMenu();
 ?>
 	<script type="text/javascript" src="./js/article.js"></script>
@@ -272,10 +266,8 @@ function subArticleEdit()
 //
 //物件管理編集完了処理
 //
-echo "libarticle line274";
 function subArticleEditComplete()
 {
-	echo "libarticle line277";
 	$conn = fnDbConnect();
 
 	$sDel         = htmlspecialchars($_REQUEST['sDel']);
@@ -305,7 +297,7 @@ function subArticleEditComplete()
 
 	if ($articleNo) {
 		// 編集
-		$sql = fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
+		$sql = fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del, $articleNo);
 		$res = mysqli_query($conn, $sql);
 	} else {
 		// 新規登録
@@ -316,9 +308,7 @@ function subArticleEditComplete()
 	}
 	$_REQUEST['act'] = 'articleSearch';
 	subArticle();
-	echo "libarticle line318";
 }
-echo "libarticle line320";
 
 //
 //物件管理削除処理
@@ -335,5 +325,4 @@ function subArticleDelete()
 	$_REQUEST['act'] = 'articleSearch';
 	subArticle();
 }
-echo "libarticle line337";
 ?>

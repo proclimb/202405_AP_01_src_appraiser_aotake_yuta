@@ -2,28 +2,24 @@
 //
 //物件管理リスト
 //
-
 function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo)
 {
 	switch ($flg) {
 		case 0:
 			$sql  = "SELECT COUNT(*)";
-			echo "libDB line11";
 			break;
 		case 1:
 			$sql  = "SELECT ARTICLENO, ARTICLE, ROOM, KEYPLACE, ARTICLENOTE, KEYBOX, DRAWING, SELLCHARGE";
-			echo "libDB line15";
 			break;
 	}
+
 	$sql .= " FROM TBLARTICLE";
 	$sql .= " WHERE DEL = $sDel";
 	if ($sArticle) {
 		$sql .= " AND ARTICLE LIKE '%$sArticle%'";
-		echo "libDB line22";
 	}
 	if ($sRoom) {
 		$sql .= " AND ROOM LIKE '%$sRoom%'";
-		echo "libDB line26";
 	}
 	if ($sKeyPlace) {
 		$sql .= " AND KEYPLACE LIKE '%$sKeyPlace%'";
@@ -49,23 +45,23 @@ function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleN
 	return ($sql);
 }
 
-
 //
 //物件管理情報
 //
+
 function fnSqlArticleEdit($articleNo)
 {
+
 	$sql  = "SELECT ARTICLE,ROOM,KEYPLACE,ADDRESS,ARTICLENOTE,KEYBOX,DRAWING,SELLCHARGE,DEL";
 	$sql .= " FROM TBLARTICLE";
 	$sql .= " WHERE ARTICLENO = $articleNo";
-
 	return ($sql);
 }
-
 
 //
 //物件管理情報更新
 //
+
 function fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del, $articleNo)
 {
 	$sql  = "UPDATE TBLARTICLE";
@@ -80,7 +76,6 @@ function fnSqlArticleUpdate($article, $room, $keyPlace, $address, $articleNote, 
 	$sql .= ",UPDT = CURRENT_TIMESTAMP";
 	$sql .= ",DEL = '$del'";
 	$sql .= " WHERE ARTICLENO = '$articleNo'";
-
 	return ($sql);
 }
 

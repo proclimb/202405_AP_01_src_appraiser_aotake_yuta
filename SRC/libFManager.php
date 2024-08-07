@@ -162,7 +162,7 @@ function subFManagerEdit()
 		$name  = htmlspecialchars($row[0]);
 		$room  = htmlspecialchars($row[1]);
 		$note  = htmlspecialchars($row[2]);
-		$del   = htmlspecialchars($row[4]);
+		$del   = htmlspecialchars($row[3]);
 
 		$purpose  = '更新';
 		$btnImage = 'btn_load.png';
