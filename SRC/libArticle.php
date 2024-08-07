@@ -59,13 +59,13 @@ function subArticle()
 				</tr>
 				<tr>
 					<th>物件名</th>
-					<td><input type="text" name="sArticle" value="<?php print $sRoom; ?>" size="50" /></td>
+					<td><input type="text" name="sArticle" value="<?php print $sArticle; ?>" size="50" /></td>
 					<th>キーBox番号</th>
 					<td><input type="text" name="sKeyBox" value="<?php print $sKeyBox; ?>" size="30" /></td>
 				</tr>
 				<tr>
 					<th>部屋番号</th>
-					<td><input type="text" name="sRoom" value="<?php print $sArticle; ?>" size="30" /></td>
+					<td><input type="text" name="sRoom" value="<?php print $sRoom; ?>" size="30" /></td>
 					<th>3Dパース</th>
 					<td><input type="text" name="sDrawing" value="<?php print $sDrawing; ?>" size="30" /></td>
 				</tr>
@@ -246,7 +246,6 @@ function subArticleEdit()
 				<td><input type="text" name="sellCharge" value="<?php print $sellCharge; ?>" /></td>
 			</tr>
 		</table>
-		echo "libarticle line254";
 		<a href="javascript:fnArticleEditCheck();"><img src="./images/<?php print $btnImage; ?>" /></a>　
 		<a href="javascript:form.act.value='articleSearch';form.submit();"><img src="./images/btn_return.png" /></a>　
 		<?php if ($articleNo) {
