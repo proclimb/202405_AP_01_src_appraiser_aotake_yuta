@@ -4,7 +4,7 @@
 function fnGuideEditCheck() {
 
 	var cnt = document.form.cnt.value;
-	for (i = 1; i < cnt; i++) {
+	for (i = 0; i < cnt; i++) {
 
 		var msg = "";
 		if (cnt > 1) { msg = (i + 1) + "件目の"; }
@@ -64,9 +64,9 @@ function fnGuideMove(muki, articleNo) {
 		var obj = $("#s" + articleNo);
 
 		// 名称の取得
-		var articleName = $(obj.children()[0]).text();
-		var articleRoom = $(obj.children()[1]).text();
-		var articleKey = $(obj.children()[2]).text();
+		var articleName = $(obj.children()[0]).html();
+		var articleRoom = $(obj.children()[1]).html();
+		var articleKey = $(obj.children()[2]).html();
 
 		// 登録リストに保存(右側に移動)
 		tags = "<tr id=\"r" + articleNo + "\">";

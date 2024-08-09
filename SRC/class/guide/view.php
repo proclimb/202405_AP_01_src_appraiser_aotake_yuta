@@ -301,12 +301,13 @@ function subGuideChoiceView($param)
 
 		<hr />
 		<?php
+		var_dump($_REQUEST);
 		if ($_REQUEST['act'] == 'guideChoiceSearch') {
 
 			$sql = fnSqlGuideArticleList(0, $param);
 			$res = mysqli_query($param["conn"], $sql);
 			$row = mysqli_fetch_array($res);
-
+			var_dump($sql);
 			$count = $row[0];
 
 			$sPage = fnPage($count, $param['sPage'], 'guideChoiceSearch');
@@ -377,7 +378,7 @@ function subGuideChoiceView($param)
 											<td class="list_td<?php print $i ?>"><?php print $row["article"] ?></td>
 											<td class="list_td<?php print $i ?>"><?php print $row["room"] ?></td>
 											<td class="list_td<?php print $i ?>">
-												<a href="#" onclick="window.open('./index.php?act=guideShowKey&articleNo=<?php print $row["articleNo"] ?>','情報詳細','width=500,height=400');return false;">鍵詳細</a>
+												<a href="#" onclick="window.open('./index.php?act=guideShowKey&articleNo=<?php print $articleNo ?>','情報詳細','width=500,height=400');return false;">鍵詳細</a>
 											</td>
 										</tr>
 								<?php

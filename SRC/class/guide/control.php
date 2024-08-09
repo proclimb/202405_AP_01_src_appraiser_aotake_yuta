@@ -1,14 +1,14 @@
 <?php
-require ('class/guide/logic.php');
-require ('class/guide/model.php');
-require ('class/guide/view.php');
-require ('class/guide/lib.php');
+require('class/guide/logic.php');
+require('class/guide/model.php');
+require('class/guide/view.php');
+require('class/guide/lib.php');
 
 function guide_control()
 {
     switch ($_REQUEST['act']) {
 
-        // 案内管理一覧
+            // 案内管理一覧
         case 'guide':
         case 'guideSearch':
             subGuide();
@@ -22,10 +22,11 @@ function guide_control()
             subGuideShowKey();
             break;
 
-        // 物件検索
+            // 物件検索
         case 'guideChoice':
         case 'guideChoiceSearch':
             subGuideChoice();
+            echo "control line29";
             break;
 
         case 'guideEdit':

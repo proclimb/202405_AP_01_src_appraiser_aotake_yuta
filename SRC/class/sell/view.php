@@ -110,10 +110,8 @@ function subSellView($param)
 		if ($_REQUEST['act'] == 'sell') {
 			return;
 		}
-
 		$sql = fnSqlSellList(0, $param);
 		$res = mysqli_query($param["conn"], $sql);
-		echo $sql;
 		$row = mysqli_fetch_array($res);
 
 		$count = $row[0];
