@@ -41,6 +41,7 @@ require('class/title/control.php');
 define("PAGE_MAX", 100);
 
 // ログインチェック
+define("PASSWORD_DEFAULT", "2y");
 switch ($_REQUEST['act']) {
         // ログインチェック
     case 'loginCheck':
